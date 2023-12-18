@@ -28,7 +28,6 @@ void Engine::update(sf::Time dt)
     if (_state == State::Pause)
     {
         Vector2i mousePos = Mouse::getPosition(_window);
-        //std::cout << mousePos.x << " " << mousePos.y << std::endl;
         _pauseMenu.update(mousePos);
         if (_pauseMenu.getStart())
         {

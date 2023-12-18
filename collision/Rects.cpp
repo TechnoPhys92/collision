@@ -58,8 +58,6 @@ void Rects::update(Time dt, RectangleShape X, RectangleShape Y, Rects* other)
 		}
 		if (_shape.getGlobalBounds().intersects(other->getShape().getGlobalBounds()))
 		{
-			std::cout << this->getWeight() << " collision TRUE\n";
-			
 			setSpeed(other);
 			other->setSpeed(this);
 		}

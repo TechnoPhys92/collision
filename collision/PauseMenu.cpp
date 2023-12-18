@@ -33,7 +33,7 @@ void PauseMenu::update(Vector2i mousePos)
 		_shape.setSize(Vector2f{ 256 * 0.9, 128 * 0.9 });
 		_shape.setPosition(Vector2f{ 640 - 256 * 0.45, 384 - 128 * 0.45 });
 		_text->setSize(0.9, Vector2f{ 640, 385 });
-		std::this_thread::sleep_for(1s);
+		std::this_thread::sleep_for(0.5s);
 		_start = true;
 	}
 	else
