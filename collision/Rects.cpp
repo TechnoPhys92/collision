@@ -54,7 +54,6 @@ void Rects::update(Time dt, RectangleShape X, RectangleShape Y, Rects* other)
 		if (_shape.getGlobalBounds().intersects(Y.getGlobalBounds()))
 		{
 			_speedX = -_speedX;
-			std::cout << this->getWeight() << " Y axes collision: TRUE\n";
 		}
 		if (_shape.getGlobalBounds().intersects(other->getShape().getGlobalBounds()))
 		{
@@ -87,12 +86,14 @@ void Rects::setSpeed(Rects* other)
 	float new_speed;
 	new_speed = k1 * _prevSpeed + k2 * other->getSpeed();
 	_speedX = new_speed;
-	_collision = false;
 }
 
-void Rects::setToInit(int weight, Vector2f pos)
+void Rects::setToInit(int weight, Vector2f pos, float speed)
 {
+	_prevSpeed = speed;
+	_speedX = speed;
 	_weight = weight;
 	_shape.setPosition(pos);
 	_falling = true;
+	_text->setPosition(Vector2f{ _shape.getPosition().x + _shape.getSize().x / 8, _shape.getPosition().y + _shape.getSize().y / 8 });
 }

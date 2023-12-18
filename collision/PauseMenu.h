@@ -18,6 +18,7 @@ public:
 	PauseMenu();
 	~PauseMenu();
 	bool getStart();
+	void setStartFalse();
 	void draw(RenderTarget& window);
 	void update(Vector2i mousePos);
 	RectangleShape getShape();

@@ -12,7 +12,6 @@ class Rects
 private:
 	RectangleShape _shape;
 	bool _falling = true;
-	bool _collision = false;
 	float _weight;
 	float _speedY = 256.f;
 	float _speedX;
@@ -23,7 +22,7 @@ public:
 	Rects(float weight, Vector2f pos, float speedX);
 	~Rects();
 	RectangleShape getShape();
-	void setToInit(int weight, Vector2f pos);
+	void setToInit(int weight, Vector2f pos, float speed);
 	int getWeight();
 	float getSpeed();
 	void setSpeed(Rects* other);
