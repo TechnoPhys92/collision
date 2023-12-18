@@ -31,15 +31,24 @@ void PauseMenu::draw(RenderTarget& window)
 	_text->draw(window);
 }
 
-void PauseMenu::update(Vector2i mousePos)
+void PauseMenu::update(Vector2i mousePos, Time dt)
 {
+	if (_timer)
+	{
+		_elapsedTime += dt.asSeconds();
+		if (_elapsedTime >= 0.5)
+		{
+			_start = true;
+			return;
+		}
+	}
 	if (Mouse::isButtonPressed(Mouse::Left) && _shape.getGlobalBounds().contains(Vector2f(mousePos)))
 	{
 		_shape.setSize(Vector2f{ 256 * 0.9, 128 * 0.9 });
 		_shape.setPosition(Vector2f{ 640 - 256 * 0.45, 384 - 128 * 0.45 });
 		_text->setSize(0.9, Vector2f{ 640, 385 });
-		std::this_thread::sleep_for(0.5s);
-		_start = true;
+		if(!_timer)
+			_timer = true;
 	}
 	else
 	{

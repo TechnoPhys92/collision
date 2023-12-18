@@ -29,7 +29,7 @@ void Engine::update(sf::Time dt)
     if (_state == State::Pause)
     {
         Vector2i mousePos = Mouse::getPosition(_window);
-        _pauseMenu.update(mousePos);
+        _pauseMenu.update(mousePos, dt);
         if (_pauseMenu.getStart())
         {
             _state = State::Play;

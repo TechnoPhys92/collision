@@ -13,6 +13,8 @@ private:
 	Vector2f _pos;
 	TextMessage* _text;
 	bool _start = false;
+	bool _timer = false;
+	float _elapsedTime = 0;
 
 public:
 	PauseMenu();
@@ -20,7 +22,7 @@ public:
 	bool getStart();
 	void setStartFalse();
 	void draw(RenderTarget& window);
-	void update(Vector2i mousePos);
+	void update(Vector2i mousePos, Time dt);
 	RectangleShape getShape();
 };
 
