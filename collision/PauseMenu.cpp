@@ -20,9 +20,11 @@ bool PauseMenu::getStart()
 	return _start;
 }
 
-void PauseMenu::setStartFalse()
+void PauseMenu::reset()
 {
 	_start = false;
+	_timer = false;
+	_timer = 0.0;
 }
 
 void PauseMenu::draw(RenderTarget& window)

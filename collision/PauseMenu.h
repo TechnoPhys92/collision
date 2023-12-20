@@ -14,13 +14,13 @@ private:
 	TextMessage* _text;
 	bool _start = false;
 	bool _timer = false;
-	float _elapsedTime = 0;
+	float _elapsedTime = 0.0;
 
 public:
 	PauseMenu();
 	~PauseMenu();
 	bool getStart();
-	void setStartFalse();
+	void reset();
 	void draw(RenderTarget& window);
 	void update(Vector2i mousePos, Time dt);
 	RectangleShape getShape();
