@@ -3,7 +3,7 @@
 Engine::Engine()
 {
 	_window.create(sf::VideoMode(1280, 768), "Collision");
-    _window.setFramerateLimit(144);
+    _window.setFramerateLimit(60);
     _rect = new Rects(1, Vector2f(256, 200), 0);
     _otherRect = new Rects(16, Vector2f(512, 200), -128);
     X = new CoordAxes(Vector2f(128, 512), Vector2f(512, 1));
