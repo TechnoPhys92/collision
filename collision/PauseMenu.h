@@ -12,6 +12,8 @@ private:
 	RectangleShape _shape;
 	Vector2f _pos;
 	TextMessage* _text;
+	TextMessage* _input;
+	TextMessage* _playerInput;
 	bool _start = false;
 	bool _timer = false;
 	float _elapsedTime = 0.0;
@@ -22,7 +24,9 @@ public:
 	bool getStart();
 	void reset();
 	void draw(RenderTarget& window);
-	void update(Vector2i mousePos, Time dt);
+	void update(Vector2i mousePos, Time dt, int input);
+	void textUpdate(Event event);
+	int getInput();
 	RectangleShape getShape();
 };
 

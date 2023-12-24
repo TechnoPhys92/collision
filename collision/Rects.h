@@ -21,6 +21,7 @@ private:
 public:
 	Rects(float weight, Vector2f pos, float speedX);
 	~Rects();
+	void setWeight(float weight);
 	RectangleShape getShape();
 	void setToInit(int weight, Vector2f pos, float speed);
 	int getWeight();

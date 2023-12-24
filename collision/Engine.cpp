@@ -5,7 +5,7 @@ Engine::Engine()
 	_window.create(sf::VideoMode(1280, 768), "Collision");
     _window.setFramerateLimit(144);
     _rect = new Rects(1, Vector2f(256, 200), 0);
-    _otherRect = new Rects(16, Vector2f(512, 200), -64);
+    _otherRect = new Rects(16, Vector2f(512, 200), -128);
     X = new CoordAxes(Vector2f(128, 512), Vector2f(512, 1));
     Y = new CoordAxes(Vector2f(128, 64), Vector2f(1, 512));
     //_window.setKeyRepeatEnabled(false);
@@ -21,6 +21,7 @@ Engine::~Engine()
 
 void Engine::update(sf::Time dt)
 {
+    int input = _pauseMenu.getInput();
     if (_state == State::Play)
     {
         _otherRect->update(dt, X->getShape(), Y->getShape(), _rect);
@@ -29,9 +30,10 @@ void Engine::update(sf::Time dt)
     if (_state == State::Pause)
     {
         Vector2i mousePos = Mouse::getPosition(_window);
-        _pauseMenu.update(mousePos, dt);
+        _pauseMenu.update(mousePos, dt, input);
         if (_pauseMenu.getStart())
         {
+            _otherRect->setWeight(_pauseMenu.getInput());
             _state = State::Play;
         }
     }
@@ -67,11 +69,7 @@ void Engine::run()
         {
             if (event.type == Event::Closed)
                 _window.close();
-            if (event.type == Event::KeyPressed)
-            {
-                if (event.key.code == Keyboard::E)
-                    _state = State::Play;
-            }
+            
             if (event.type == Event::KeyPressed)
             {
                 if (event.key.code == Keyboard::Escape)
@@ -81,6 +79,11 @@ void Engine::run()
                     _rect->setToInit(1, Vector2f(256, 200), 0);
                     _otherRect->setToInit(4, Vector2f(512, 200), -64);
                 }
+            }
+
+            if (_state == State::Pause)
+            {
+                _pauseMenu.textUpdate(event);
             }
         }
         update(dt);

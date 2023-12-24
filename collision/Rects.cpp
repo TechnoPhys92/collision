@@ -13,6 +13,12 @@ Rects::Rects(float weight, Vector2f pos, float speedX)
 	_text = new TextMessage{ std::to_string((int)_weight) + "kg", 16,  Vector2f{_shape.getPosition().x + _shape.getSize().x / 8, _shape.getPosition().y + _shape.getSize().y / 8} };
 }
 
+void Rects::setWeight(float weight)
+{
+	_weight = weight;
+	_text->setText(std::to_string((int)_weight) + "kg");
+}
+
 Rects::~Rects()
 {
 	delete _text;
