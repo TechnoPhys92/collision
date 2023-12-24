@@ -40,14 +40,17 @@ void TextMessage::setSize(float size, Vector2f pos)
 
 void TextMessage::inputMessage(Event event)
 {
-	_string += event.text.unicode;
-	std::string str = _string;
+	if (!Keyboard::isKeyPressed(Keyboard::Escape) && !Keyboard::isKeyPressed(Keyboard::Backspace))
+	{
+		_string += event.text.unicode;
+		std::string str = _string;
 
-	if(isNumber(str))
-		_input = std::stoi(str);
+		if (isNumber(str))
+			_input = std::stoi(str);
 
-	_text.setString(_string);
-	setOrigionToCenter();
+		_text.setString(_string);
+		setOrigionToCenter();
+	}
 }
 
 void TextMessage::deleteChar()
